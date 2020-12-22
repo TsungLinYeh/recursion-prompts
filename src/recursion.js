@@ -27,12 +27,22 @@ var sum = function(array) {
     var copy = array.slice(0, array.length);
     var result = copy.pop();
     return  result + sum(copy);
-
 };
 
 // 3. Sum all numbers in an array containing nested arrays.
 // arraySum([1,[2,3],[[4]],5]); // 15
 var arraySum = function(array) {
+    if (array.length === 0) {
+        return 0;
+    }
+    var copy = array.slice(0, array.length);
+    var result = copy.pop();
+
+    if (Array.isArray(result)) {
+        return arraySum(result) + arraySum(copy);
+    } else {
+        return  result + arraySum(copy);
+    }
 };
 
 // 4. Check if a number is even.
